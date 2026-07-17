@@ -3,10 +3,275 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sweet Shop Management</title>
+    <style>
+        :root {
+            --pink: #e75480;
+            --pink-dark: #c23b63;
+            --cream: #fff8f0;
+            --text: #3a2c2c;
+            --muted: #8a7a7a;
+            --border: #f0e0da;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: var(--cream);
+            color: var(--text);
+        }
+
+        header {
+            background: var(--pink);
+            color: #fff;
+            padding: 1.25rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        header .subtitle {
+            margin: 0.15rem 0 0;
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            margin-bottom: 2.5rem;
+        }
+
+        section h2 {
+            font-size: 1.2rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        /* Add Sweet form */
+        .add-form {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            align-items: end;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .field label {
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        .field input,
+        .field select {
+            padding: 0.55rem 0.65rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .add-form button {
+            background: var(--pink);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 0.65rem 1rem;
+            font-size: 0.95rem;
+            cursor: pointer;
+            height: fit-content;
+        }
+
+        .add-form button:hover {
+            background: var(--pink-dark);
+        }
+
+        /* Sweets grid */
+        .sweets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .sweet-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .sweet-card .name {
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        .sweet-card .category {
+            font-size: 0.8rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .sweet-card .price {
+            font-size: 1.1rem;
+            color: var(--pink-dark);
+            font-weight: 600;
+        }
+
+        .sweet-card .stock {
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .sweet-card .actions {
+            margin-top: 0.5rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .sweet-card .actions button {
+            flex: 1;
+            padding: 0.5rem;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: var(--cream);
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        .sweet-card .actions button.purchase {
+            background: var(--pink);
+            color: #fff;
+            border-color: var(--pink);
+        }
+
+        .sweet-card .actions button.purchase:hover {
+            background: var(--pink-dark);
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello word</h1>
-    <h1>Byy</h1>
+    <header>
+        <div>
+            <h1>Sweet Shop Management</h1>
+            <p class="subtitle">Manage your inventory of sweets</p>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <h2>Add Sweet</h2>
+            <form class="add-form">
+                <div class="field">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Kaju Katli">
+                </div>
+                <div class="field">
+                    <label for="category">Category</label>
+                    <select id="category" name="category">
+                        <option value="milk-based">Milk Based</option>
+                        <option value="dry-fruit">Dry Fruit</option>
+                        <option value="candy">Candy</option>
+                        <option value="chocolate">Chocolate</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="price">Price (₹)</label>
+                    <input type="number" id="price" name="price" placeholder="450" min="0">
+                </div>
+                <div class="field">
+                    <label for="quantity">Quantity</label>
+                    <input type="number" id="quantity" name="quantity" placeholder="20" min="0">
+                </div>
+                <button type="submit">Add Sweet</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Available Sweets</h2>
+            <div class="sweets-grid">
+                <div class="sweet-card">
+                    <span class="category">Milk Based</span>
+                    <span class="name">Kaju Katli</span>
+                    <span class="price">₹450 / kg</span>
+                    <span class="stock">In stock: 20</span>
+                    <div class="actions">
+                        <button class="purchase">Purchase</button>
+                        <button class="edit">Edit</button>
+                        <button class="delete">Delete</button>
+                    </div>
+                </div>
+                <div class="sweet-card">
+                    <span class="category">Dry Fruit</span>
+                    <span class="name">Dry Fruit Barfi</span>
+                    <span class="price">₹600 / kg</span>
+                    <span class="stock">In stock: 12</span>
+                    <div class="actions">
+                        <button class="purchase">Purchase</button>
+                        <button class="edit">Edit</button>
+                        <button class="delete">Delete</button>
+                    </div>
+                </div>
+                <div class="sweet-card">
+                    <span class="category">Candy</span>
+                    <span class="name">Rasgulla</span>
+                    <span class="price">₹250 / kg</span>
+                    <span class="stock">In stock: 35</span>
+                    <div class="actions">
+                        <button class="purchase">Purchase</button>
+                        <button class="edit">Edit</button>
+                        <button class="delete">Delete</button>
+                    </div>
+                </div>
+                <div class="sweet-card">
+                    <span class="category">Chocolate</span>
+                    <span class="name">Chocolate Barfi</span>
+                    <span class="price">₹500 / kg</span>
+                    <span class="stock">In stock: 0</span>
+                    <div class="actions">
+                        <button class="purchase" disabled>Out of Stock</button>
+                        <button class="edit">Edit</button>
+                        <button class="delete">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2026 Sweet Shop Management
+    </footer>
 </body>
 </html>
